@@ -1,0 +1,11 @@
+target/
+.git/
+.idea/
+data/
+logs/
+scripts/
+*.md
+*.sqlite
+UI app/
+.claude/
+.env

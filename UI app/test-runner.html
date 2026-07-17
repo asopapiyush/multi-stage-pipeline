@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DeepFlow UI - Test Runner</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <style>
+    :root {
+      --bg: #09090b;
+      --card: #18181b;
+      --border: #27272a;
+      --text: #fafafa;
+      --text-muted: #a1a1aa;
+      --emerald: #10b981;
+      --red: #ef4444;
+      --indigo: #6366f1;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 40px 20px;
+      display: flex;
+      justify-content: center;
+      background-image: radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.08) 0px, transparent 50%);
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 20px;
+      margin-bottom: 24px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    h1 i {
+      color: var(--indigo);
+    }
+
+    .summary-badge {
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+    }
+
+    .summary-badge.all-passed {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--emerald);
+      border: 1px solid rgba(16, 185, 129, 0.2);
+    }
+
+    .summary-badge.has-failed {
+      background: rgba(239, 68, 68, 0.1);
+      color: var(--red);
+      border: 1px solid rgba(239, 68, 68, 0.2);
+    }
+
+    .results-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .test-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 16px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      transition: border-color 0.2s;
+    }
+
+    .test-row:hover {
+      border-color: rgba(255, 255, 255, 0.08);
+    }
+
+    .test-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .test-name {
+      font-weight: 500;
+      font-size: 0.95rem;
+    }
+
+    .test-error {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--red);
+      background: rgba(239, 68, 68, 0.05);
+      padding: 6px 10px;
+      border-radius: 6px;
+      margin-top: 4px;
+      border: 1px solid rgba(239, 68, 68, 0.1);
+    }
+
+    .test-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .test-status.passed {
+      color: var(--emerald);
+    }
+
+    .test-status.failed {
+      color: var(--red);
+    }
+
+    .test-status i {
+      width: 16px;
+      height: 16px;
+    }
+
+    .footer {
+      margin-top: 24px;
+      text-align: center;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .footer a {
+      color: var(--indigo);
+      text-decoration: none;
+    }
+  </style>
+
+  <!-- Dummy DOM components mock to allow app.js load without error -->
+  <div style="display:none;">
+    <button id="modeToggle"></button>
+    <span id="modeText"></span>
+    <textarea id="urlInput"></textarea>
+    <button id="submitBtn"></button>
+    <div id="jobHistoryList"></div>
+    <div id="dashboardPanel"></div>
+    <span id="activeJobIdText"></span>
+    <div id="jobStateBadge"></div>
+    <span id="jobStateText"></span>
+    <span id="docsProcessed"></span>
+    <span id="docsProgressText"></span>
+    <span id="avgReadability"></span>
+    <span id="totalWords"></span>
+    <span id="queueNumericText"></span>
+    <div id="queueMeterFill"></div>
+    <div id="q-dot-0"></div>
+    <div id="q-dot-1"></div>
+    <div id="q-dot-2"></div>
+    <div id="q-dot-3"></div>
+    <div id="q-dot-4"></div>
+    <div id="itemsTableBody"></div>
+    <div id="topWordsContainer"></div>
+    <div id="itemDetailDrawer"></div>
+    <div id="drawerBody"></div>
+  </div>
+
+  <!-- Include App & Tests -->
+  <script src="app.js"></script>
+  <script src="tests.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><i data-lucide="shield-check"></i> DeepFlow UI Test Suite</h1>
+      <span id="summaryBadge" class="summary-badge">Running...</span>
+    </header>
+
+    <div class="results-list" id="resultsList">
+      <!-- Dynamically filled with test outputs -->
+    </div>
+
+    <div class="footer">
+      <p>All tests executed directly in the browser environment. <a href="index.html">Back to Dashboard</a></p>
+    </div>
+  </div>
+
+  <script>
+    // Run test suite
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      
+      const resultsList = document.getElementById('resultsList');
+      const summaryBadge = document.getElementById('summaryBadge');
+      
+      Suite.run(
+        // onComplete
+        (passed, failed) => {
+          if (failed === 0) {
+            summaryBadge.className = 'summary-badge all-passed';
+            summaryBadge.textContent = `All ${passed} Tests Passed`;
+          } else {
+            summaryBadge.className = 'summary-badge has-failed';
+            summaryBadge.textContent = `${failed} Failed, ${passed} Passed`;
+          }
+        },
+        // onAssert
+        (name, success, errorMsg) => {
+          let row = document.getElementById(`test-${name.replace(/\s+/g, '-')}`);
+          if (!row) {
+            row = document.createElement('div');
+            row.id = `test-${name.replace(/\s+/g, '-')}`;
+            row.className = 'test-row';
+            resultsList.appendChild(row);
+          }
+
+          if (success) {
+            row.innerHTML = `
+              <div class="test-info">
+                <span class="test-name">${escapeHtml(name)}</span>
+              </div>
+              <span class="test-status passed"><i data-lucide="check-circle"></i> Passed</span>
+            `;
+          } else {
+            row.innerHTML = `
+              <div class="test-info">
+                <span class="test-name">${escapeHtml(name)}</span>
+                <div class="test-error">${escapeHtml(errorMsg)}</div>
+              </div>
+              <span class="test-status failed"><i data-lucide="alert-triangle"></i> Failed</span>
+            `;
+          }
+          lucide.createIcons({
+            nodeList: [row]
+          });
+        }
+      );
+    });
+  </script>
+</body>
+</html>

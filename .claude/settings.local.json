@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(awk '{print $NF, \"\\(\" $5 \"\\)\"}')",
+      "Bash(git init *)",
+      "Bash(mvn clean *)",
+      "Bash(java -version)",
+      "Bash(sed -i 's/new FetchResult\\(\"https:\\\\/\\\\/example.com\", html, FetchStatus.SUCCESS, null, 100\\)/new FetchResult\\(0, \"https:\\\\/\\\\/example.com\", html, FetchStatus.SUCCESS, null, 100\\)/g' AnalyzeStageTest.java)",
+      "Bash(sed -i 's/new FetchResult\\(\"https:\\\\/\\\\/example.com\", \"\", FetchStatus.SUCCESS, null, 100\\)/new FetchResult\\(0, \"https:\\\\/\\\\/example.com\", \"\", FetchStatus.SUCCESS, null, 100\\)/g' AnalyzeStageTest.java)",
+      "Bash(sed -i 's/new FetchResult\\(\"https:\\\\/\\\\/example.com\", null, FetchStatus.FETCH_TIMEOUT, \"Timeout\", 5000\\)/new FetchResult\\(0, \"https:\\\\/\\\\/example.com\", null, FetchStatus.FETCH_TIMEOUT, \"Timeout\", 5000\\)/g' AnalyzeStageTest.java)",
+      "Bash(sed -i 's/new FetchResult\\(\"https:\\\\/\\\\/example.com\\\\/\" + i, html, FetchStatus.SUCCESS, null, 100\\)/new FetchResult\\(i, \"https:\\\\/\\\\/example.com\\\\/\" + i, html, FetchStatus.SUCCESS, null, 100\\)/g' AnalyzeStageTest.java)",
+      "Bash(sed -i 's/new FetchResult\\(\"https:\\\\/\\\\/example.com\", htmlBuilder.toString\\(\\), FetchStatus.SUCCESS, null, 100\\)/new FetchResult\\(0, \"https:\\\\/\\\\/example.com\", htmlBuilder.toString\\(\\), FetchStatus.SUCCESS, null, 100\\)/g' AnalyzeStageTest.java)"
+    ]
+  }
+}

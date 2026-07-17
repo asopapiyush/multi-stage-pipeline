@@ -1,0 +1,15 @@
+com\pipeline\stage\StoreStageTest.class
+com\pipeline\orchestration\PipelineOrchestratorTest.class
+com\pipeline\stage\AnalyzeStageTest.class
+com\pipeline\websocket\JobProgressHandlerTest.class
+com\pipeline\stage\FetchStageTest.class
+com\pipeline\repository\JobRepositoryTest.class
+com\pipeline\JobPipelineIntegrationTest$1.class
+com\pipeline\Phase1IntegrationTest.class
+com\pipeline\model\JobRequestTest.class
+com\pipeline\controller\JobControllerTest.class
+com\pipeline\model\FetchResultTest.class
+com\pipeline\model\AnalysisResultTest.class
+com\pipeline\model\ItemStatusTest.class
+com\pipeline\JobPipelineIntegrationTest.class
+com\pipeline\model\JobAggregateTest.class
