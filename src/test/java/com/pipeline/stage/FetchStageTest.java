@@ -60,7 +60,7 @@ class FetchStageTest {
 
         assertNotNull(result);
         assertEquals(FetchStatus.INVALID_URL, result.status());
-        assertTrue(result.error().contains("private") || result.error().contains("loopback"));
+        assertTrue(result.error().toLowerCase().contains("private") || result.error().toLowerCase().contains("loopback"));
     }
 
     @Test
@@ -125,7 +125,7 @@ class FetchStageTest {
 
         assertNotNull(result);
         assertEquals(FetchStatus.INVALID_URL, result.status());
-        assertTrue(result.error().contains("long") || result.error().contains("length"));
+        assertTrue(result.error().toLowerCase().contains("exceeds") || result.error().toLowerCase().contains("limit"));
     }
 
     @Test

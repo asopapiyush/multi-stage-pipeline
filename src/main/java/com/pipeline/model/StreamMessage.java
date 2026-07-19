@@ -1,8 +1,5 @@
 package com.pipeline.model;
 
-import lombok.Data;
-
-@Data
 public class StreamMessage {
     private String eventType;
     private String jobId;
@@ -18,6 +15,21 @@ public class StreamMessage {
         this.aggregates = aggregates;
         this.timestamp = timestamp;
     }
+
+    public String getEventType() { return eventType; }
+    public void setEventType(String eventType) { this.eventType = eventType; }
+
+    public String getJobId() { return jobId; }
+    public void setJobId(String jobId) { this.jobId = jobId; }
+
+    public ItemStatus getItemStatus() { return itemStatus; }
+    public void setItemStatus(ItemStatus itemStatus) { this.itemStatus = itemStatus; }
+
+    public JobAggregate getAggregates() { return aggregates; }
+    public void setAggregates(JobAggregate aggregates) { this.aggregates = aggregates; }
+
+    public long getTimestamp() { return timestamp; }
+    public void setTimestamp(long timestamp) { this.timestamp = timestamp; }
 
     public int getQueueDepth() { return queueDepth; }
     public void setQueueDepth(int queueDepth) { this.queueDepth = queueDepth; }

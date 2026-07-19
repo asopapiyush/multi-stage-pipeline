@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.pipeline.orchestration.PipelineOrchestratorTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 162.2 s -- in com.pipeline.orchestration.PipelineOrchestratorTest

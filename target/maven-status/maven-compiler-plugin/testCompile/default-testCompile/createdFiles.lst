@@ -6,10 +6,12 @@ com\pipeline\stage\FetchStageTest.class
 com\pipeline\repository\JobRepositoryTest.class
 com\pipeline\JobPipelineIntegrationTest$1.class
 com\pipeline\Phase1IntegrationTest.class
+com\pipeline\repository\TestDataSourceFactory$1.class
 com\pipeline\model\JobRequestTest.class
 com\pipeline\controller\JobControllerTest.class
 com\pipeline\model\FetchResultTest.class
 com\pipeline\model\AnalysisResultTest.class
 com\pipeline\model\ItemStatusTest.class
 com\pipeline\JobPipelineIntegrationTest.class
+com\pipeline\repository\TestDataSourceFactory.class
 com\pipeline\model\JobAggregateTest.class

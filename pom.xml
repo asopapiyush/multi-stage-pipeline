@@ -25,6 +25,11 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- Spring Boot 3.2.0's BOM pins Mockito 5.7.0 / Byte Buddy 1.14.10, which predate
+             JDK 26 class file support (Byte Buddy officially supports up to Java 22 there).
+             Override to current versions with JDK 26 support so tests can run on newer local JDKs. -->
+        <mockito.version>5.23.0</mockito.version>
+        <byte-buddy.version>1.18.11</byte-buddy.version>
     </properties>
 
     <dependencies>

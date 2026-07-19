@@ -109,16 +109,29 @@ class JobControllerTest {
 
     @Test
     void testInputValidation() throws Exception {
-        // Test various invalid inputs
-        List<String> invalidUrls = List.of("not-a-url", "ftp://invalid.com", "");
+        // Malformed/unsupported-scheme URLs still create the job; the URL is fetched and
+        // marked FAILED asynchronously by the pipeline rather than rejected at the API layer.
+        List<String> acceptedButInvalidUrls = List.of("not-a-url", "ftp://invalid.com");
 
-        for (String invalidUrl : invalidUrls) {
+        for (String invalidUrl : acceptedButInvalidUrls) {
             JobRequest request = new JobRequest(List.of(invalidUrl));
 
             mockMvc.perform(post("/api/jobs")
                     .contentType(MediaType.APPLICATION_JSON)
                     .content(objectMapper.writeValueAsString(request)))
-                    .andExpect(status().isCreated());  // Job created, but URL marked as invalid
+                    .andExpect(status().isCreated());
         }
+    }
+
+    @Test
+    void testEmptyUrlStringRejected() throws Exception {
+        // An empty URL string fails synchronous validation in JobService.startJob and
+        // is rejected at the API layer with 400, unlike malformed-but-non-empty URLs.
+        JobRequest request = new JobRequest(List.of(""));
+
+        mockMvc.perform(post("/api/jobs")
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(request)))
+                .andExpect(status().isBadRequest());
     }
 }
